@@ -1,0 +1,15 @@
+{
+  "name": "riverwash/api",
+  "description": "Riverwash Demoparty webpage API",
+  "licence": "proprietary",
+  "require": {
+    "ayeaye/api": "^1.0",
+    "duffleman/lunophp": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Riverwash\\": "src/Riverwash/"
+    }
+  }
+
+}
