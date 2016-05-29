@@ -2,8 +2,6 @@
 
 require_once 'vendor/autoload.php';
 
-date_default_timezone_set('Europe/Warsaw');
-
 use AyeAye\Api\Api;
 use Dotenv\Dotenv;
 use Riverwash\UsersController;
@@ -11,6 +9,13 @@ use Psr\Log\AbstractLogger;
 
 $dotenv = new Dotenv(__DIR__);
 $dotenv->load();
+
+header('Access-Control-Allow-Origin: '. getenv('ACCESS_CONTROL_ALLOW_ORIGIN'));
+header('Access-Control-Allow-Methods: GET, POST');
+header('Access-Control-Allow-Headers: origin, content-type, accept');
+
+date_default_timezone_set('Europe/Warsaw');
+
 
 class EchoLogger extends AbstractLogger {
     public function log($level, $message, array $context = array()) {
