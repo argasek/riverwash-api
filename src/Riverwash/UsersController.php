@@ -24,7 +24,7 @@ class UsersController extends RiverwashController {
      * lol...
      * @return $this
      */
-    public function riverwashController() {
-        return $this;
+    public function userController() {
+        return new UserController();
     }
 }

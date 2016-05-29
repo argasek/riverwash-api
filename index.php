@@ -11,7 +11,7 @@ $dotenv = new Dotenv(__DIR__);
 $dotenv->load();
 
 header('Access-Control-Allow-Origin: '. getenv('ACCESS_CONTROL_ALLOW_ORIGIN'));
-header('Access-Control-Allow-Methods: GET, POST');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: origin, content-type, accept');
 
 date_default_timezone_set('Europe/Warsaw');
