@@ -15,25 +15,30 @@ class UserController extends RiverwashController {
      * @param string $country Country
      * @param string $email E-mail
      * @param string $password Password
+     * @param string $language Language
      *
      * @return array
      *
      * @throws Exception
      */
-    public function postRegisterEndpoint($handle, $group, $country, $email, $password) {
+    public function postRegisterEndpoint($handle, $group, $country, $email, $password, $language) {
+        $language = filter_var(trim($language), FILTER_SANITIZE_STRING);
         $handle = filter_var(trim($handle), FILTER_SANITIZE_STRING);
         $group = filter_var(trim($group), FILTER_SANITIZE_STRING);
         $country = filter_var(trim($country), FILTER_SANITIZE_STRING);
         $email = filter_var(trim($email), FILTER_SANITIZE_EMAIL);
 
         if ($handle == '') {
-            return new Exception('Handle field cannot be empty!', 500);
+            $text = ($language == 'pl' ? 'Pole Ksywa nie może być puste!' : 'Handle field cannot be empty!');
+            return new Exception($text, 500);
         }
         if ($email == '') {
-            return new Exception('E-mail field cannot be empty!', 500);
+            $text = ($language == 'pl' ? 'Musisz podać adres e-mail!' : 'E-mail field cannot be empty!');
+            return new Exception($text, 500);
         }
         if ($password == '') {
-            return new Exception('Password field cannot be empty!', 500);
+            $text = ($language == 'pl' ? 'Hasło nie może być puste!' : 'Password field cannot be empty!');
+            return new Exception($text, 500);
         }
 
         try {
@@ -52,7 +57,8 @@ class UserController extends RiverwashController {
             $user->fromLunoUser($lunoUser);
 
         } catch (LunoApiException $exception) {
-            $e = new Exception('User API request failed', 500);
+            $text = ($language == 'pl' ? 'Nieudana komunikacja z API' : 'User API request failed');
+            $e = new Exception($text, 500);
             return $e->jsonSerialize();
         }
 

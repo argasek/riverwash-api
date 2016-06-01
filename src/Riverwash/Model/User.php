@@ -17,7 +17,7 @@ class User {
     }
 
     private function getGravatarUrlFromEmail($email, $size = 0) {
-        $default = 'http://riverwash.org/images/user.png';
+        $default = 'wavatar';
         $sizeLimiter = ($size > 0 ? '&s=' . $size : '');
 
         return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=' . urlencode($default) . $sizeLimiter;
