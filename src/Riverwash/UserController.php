@@ -57,7 +57,7 @@ class UserController extends RiverwashController {
             $user->fromLunoUser($lunoUser);
 
         } catch (LunoApiException $exception) {
-            $text = ($language == 'pl' ? 'Nieudana komunikacja z API' : 'User API request failed');
+            $text = ($language == 'pl' ? 'Nieudana komunikacja z API' : $exception->getMessage());
             $e = new Exception($text, 500);
             return $e->jsonSerialize();
         }
