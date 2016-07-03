@@ -15,7 +15,12 @@ class UsersController extends RiverwashController {
         foreach ($lunoUsersIterator as $lunoUser) {
             $user = new User();
             $user->fromLunoUser($lunoUser);
-            array_push($users, $user);
+            array_push($users, [
+                'handle' => $user->handle,
+                'group' => $user->group,
+                'country' => $user->country,
+                'image' => $user->image
+            ]);
         };
         return $users;
     }
