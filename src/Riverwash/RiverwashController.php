@@ -4,6 +4,7 @@ namespace Riverwash;
 
 use AyeAye\Api\Controller;
 use Duffleman\Luno\LunoRequester;
+use Maknz\Slack\Client;
 
 class RiverwashController extends Controller {
 
@@ -15,6 +16,11 @@ class RiverwashController extends Controller {
     protected $lunoRequester;
 
     /**
+     * @var
+     */
+    protected $slack;
+
+    /**
      * RiverwashController constructor.
      */
     public function __construct() {
@@ -23,6 +29,13 @@ class RiverwashController extends Controller {
             'key' => getenv('LUNO_KEY'),
             'secret' => getenv('LUNO_SECRET'),
             'timeout' => 10000,
+        ]);
+
+        $this->slack = new Client(getenv('SLACK_WEBHOOK'), [
+            'username' => 'Pralka Rzeczna',
+            'channel' => getenv('SLACK_CHANNEL'),
+            'icon' => ':washing:',
+            'link_names' => true
         ]);
 
     }
